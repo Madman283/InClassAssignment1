@@ -8,7 +8,8 @@ public class AnswerDetector : MonoBehaviour
     public GameObject[] currentRow;
     public GameObject[] answerKey;
     public GameObject[] pins;
-    public GameObject[] hintGrid;
+    public GameObject hintGrid;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,15 +35,15 @@ public class AnswerDetector : MonoBehaviour
             answerMats[i] = temp;
         }
 
-        Material[] currentRowMats = new Material[currentRow.Length];
+        Material[] currentMats = new Material[currentRow.Length];
         for (int i = 0; i < currentRow.Length; i++)
         {
             Material temp =
                 currentRow[i].GetComponent<MeshRenderer>().material;
-            currentRowMats[i] = temp;
+            currentMats[i] = temp;
         }
 
-        Report(answerMats, currentRowMats);
+        Report(answerMats, currentMats);
 
 
 
@@ -52,6 +53,7 @@ public class AnswerDetector : MonoBehaviour
         int[] answerValues = new int[currentMats.Length];
         List<Material> compMats = answerMats.ToList();
         List<Color> colorAnswers = new List<Color>();
+
         foreach (var item in compMats)
         {
             colorAnswers.Add(item.color);
@@ -78,20 +80,23 @@ public class AnswerDetector : MonoBehaviour
                     answerValues[i] = -1;
             }
         }
-        for (int i = 0; i < currentMats.Length; i++)
-        {
-            if (answerValues[i] == 1)
-                Debug.Log("Correct Color/Position:");
-            else if (answerValues[i] == 0)
-                Debug.Log("Wrong Color/Position:");
-            else
-                Debug.Log("Color not used");
 
-            Debug.Log($"At Index:{i}, nums is {currentRow[i]}, and nums2 is {currentMats[i]}");
+        //This is an old code. It only does debugging messages so its not actually needed.
+        // The answerMats code above is also not needed if wanted
+        //for (int i = 0; i < currentMats.Length; i++)
+        //{
+        //    if (answerValues[i] == 1)
+        //        Debug.Log("Correct Color/Position:");
+        //    else if (answerValues[i] == 0)
+        //        Debug.Log("Wrong Color/Position:");
+        //    else
+        //        Debug.Log("Color not used");
+
+        //    Debug.Log($"At Index:{i}, nums is {currentRow[i]}, and nums2 is {currentMats[i]}");
 
            
-        }
-        for (int i = 0; i < pins.Length; i++)
+        //}
+        for (int i = 0; i < currentMats.Length; i++)
         {
             if (currentMats[i].color == answerMats[i].color)
             {

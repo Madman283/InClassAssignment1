@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3261,6 +3261,10 @@ MonoBehaviour:
   - {fileID: 1576384064}
   - {fileID: 658733928}
   - {fileID: 527867782}
+  pins:
+  - {fileID: 3911858948842617386}
+  - {fileID: 690930672884180797}
+  hintGrid: {fileID: 802272029}
 --- !u!1 &2044542447
 GameObject:
   m_ObjectHideFlags: 0
@@ -3644,10 +3648,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 690930671882132956, guid: 62df672ca9c532147bc4b8092c622e1e, type: 3}
       propertyPath: m_Name
-      value: Pin (1)
+      value: Incorrect
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62df672ca9c532147bc4b8092c622e1e, type: 3}
+--- !u!1 &690930672884180797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 690930671882132956, guid: 62df672ca9c532147bc4b8092c622e1e, type: 3}
+  m_PrefabInstance: {fileID: 690930672884180796}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3911858948842617385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3657,7 +3666,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3911858947320225321, guid: f305037f8496d474b9441f61a87a348b, type: 3}
       propertyPath: m_Name
-      value: Pin
+      value: Correct
       objectReference: {fileID: 0}
     - target: {fileID: 3911858947320225325, guid: f305037f8496d474b9441f61a87a348b, type: 3}
       propertyPath: m_RootOrder
@@ -3713,3 +3722,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f305037f8496d474b9441f61a87a348b, type: 3}
+--- !u!1 &3911858948842617386 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3911858947320225321, guid: f305037f8496d474b9441f61a87a348b, type: 3}
+  m_PrefabInstance: {fileID: 3911858948842617385}
+  m_PrefabAsset: {fileID: 0}
