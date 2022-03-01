@@ -8,6 +8,7 @@ TagManager:
   - Villain
   - Game Tile
   - GameTile
+  - ColorTile
   layers:
   - Default
   - TransparentFX
