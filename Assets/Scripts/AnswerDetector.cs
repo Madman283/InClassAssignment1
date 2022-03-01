@@ -7,6 +7,8 @@ public class AnswerDetector : MonoBehaviour
 {
     public GameObject[] currentRow;
     public GameObject[] answerKey;
+    public GameObject[] pins;
+    public GameObject[] hintGrid;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,21 +44,24 @@ public class AnswerDetector : MonoBehaviour
 
         Report(answerMats, currentRowMats);
 
-        int xx = 13;
-
 
 
     } 
-
-    void Report(Material[] answerMats, Material[] currentRowMats)
+    void Report(Material[] answerMats, Material[] currentMats)
     {
-        int[] answers = new int[answerMats.Length];
+        int[] answerValues = new int[currentMats.Length];
+        List<Material> compMats = answerMats.ToList();
+        List<Color> colorAnswers = new List<Color>();
+        foreach (var item in compMats)
+        {
+            colorAnswers.Add(item.color);
+        }
 
         for (int i = 0; i < answerMats.Length; i++)
         {
-            if (answerMats[i] == currentRowMats[i])
+            if (answerMats[i] == currentMats[i])
             {
-                answers[i] = 1;
+                answerValues[i] = 1;
                 Debug.Log($"{answerMats[i]} is the same in both");
             }
 
@@ -65,24 +70,57 @@ public class AnswerDetector : MonoBehaviour
                 
                 Debug.Log($"{answerMats[i]} does not match {currentRow[i]}");
 
-                List<Material> compMats = answerMats.ToList();
+                
 
-                if (compMats.Contains(currentRowMats[i]))
-                    answers[i] = 0;
+                if (compMats.Contains(currentMats[i]))
+                    answerValues[i] = 0;
                 else
-                    answers[i] = -1;
+                    answerValues[i] = -1;
             }
         }
-        for (int i = 0; i < currentRowMats.Length; i++)
+        for (int i = 0; i < currentMats.Length; i++)
         {
-            if (answers[i] == 1)
+            if (answerValues[i] == 1)
                 Debug.Log("Correct Color/Position:");
-            else if (answers[i] == 0)
+            else if (answerValues[i] == 0)
                 Debug.Log("Wrong Color/Position:");
             else
                 Debug.Log("Color not used");
 
-            Debug.Log($"At Index:{i}, nums is {currentRow[i]}, and nums2 is {currentRowMats[i]}");
+            Debug.Log($"At Index:{i}, nums is {currentRow[i]}, and nums2 is {currentMats[i]}");
+
+           
         }
+        for (int i = 0; i < pins.Length; i++)
+        {
+            if (currentMats[i].color == answerMats[i].color)
+            {
+                answerValues[i] = 1;
+                instantiateCorrectPin(hintGrid.transform.GetChild(i).transform);
+            }
+            else if (colorAnswers.Contains(currentMats[i].color))
+            {
+                answerValues[i] = 0;
+                instantiateWrongPin(hintGrid.transform.GetChild(i).transform);
+            }
+            else
+            {
+                answerValues[i] = -1;
+            }
+        }
+    }
+    void instantiateCorrectPin(Transform transform)
+    {
+        GameObject pin = Instantiate(pins[0]);
+        pin.transform.position = transform.position;
+
+
+    }
+    void instantiateWrongPin(Transform transform)
+    {
+        GameObject pin = Instantiate(pins[1]);
+        pin.transform.position = transform.position;
+
+
     }
 }
